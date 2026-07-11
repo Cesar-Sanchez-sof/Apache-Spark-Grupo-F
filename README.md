@@ -18,37 +18,35 @@ El espacio de trabajo contiene los siguientes archivos listos para entrega y eje
    - **Parte 3 (Scala DataFrame API)**: Resolución de las consultas de la Parte 2 usando métodos directos de la API de Spark.
    - **Parte 4 (GraphFrames)**: Grafo de autores y bibliotecas escrito en Scala.
    - **Parte 5 (GraphX)**: Grafo de bibliotecas conectadas por editoriales compartidas, aplicando el algoritmo **Connected Components**.
-5. **[`ejecutar_analisis.bat`](./ejecutar_analisis.bat)**: Script batch interactivo para Windows que permite ejecutar cualquiera de los análisis con doble clic.
 
 ---
 
-## 🛠️ Requisitos y Configuración del Entorno Local
+## 🚀 Guía de Ejecución en Windows (PowerShell)
 
-Para ejecutar los scripts de Spark localmente en Windows, sigue estos pasos:
-
-### 1. Prerrequisitos de Software
-- **Java 17 (LTS)**: Requerido para compatibilidad con Apache Spark. (Ya instalado localmente en `C:\Program Files\Zulu\zulu-17`).
-- **Python 3.10+**: (Ya instalado).
-
-### 2. Librerías de Python Necesarias
-Abre una terminal de PowerShell e instala:
+Para ejecutar los scripts, primero configura tu terminal de PowerShell con las variables de entorno para usar Java 17 y Python local:
 ```powershell
-pip install pyspark graphframes pandas xlrd
+$env:JAVA_HOME = "C:\Program Files\Zulu\zulu-17"
+$env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
+$env:PYSPARK_PYTHON = "python"
+$env:PYSPARK_DRIVER_PYTHON = "python"
 ```
 
----
+### 1. Ejecutar Código PySpark + Spark SQL (Python)
+Ejecuta la solución de Python directamente:
+```powershell
+python pyspark_solution.py
+```
 
-## 🚀 Guía de Ejecución Rápida en Windows
-
-1. Haz **doble clic** en **`ejecutar_analisis.bat`**.
-2. Presiona `1` para correr la solución de Python (PySpark) o `2` para correr la de Scala (spark-shell).
-3. Si deseas correrlos de manera manual, la variable de entorno de Java se debe configurar así en PowerShell antes del comando:
+### 2. Ejecutar Código Scala DataFrame API + GraphX (Scala)
+1. Lanza el shell interactivo de Spark indicando el paquete Maven de GraphFrames:
    ```powershell
-   $env:JAVA_HOME = "C:\Program Files\Zulu\zulu-17"
-   $env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
-   $env:PYSPARK_PYTHON = "python"
-   $env:PYSPARK_DRIVER_PYTHON = "python"
+   spark-shell --packages graphframes:graphframes:0.8.4-spark3.5-s_2.12
    ```
+2. Una vez que inicie el intérprete (verás el prompt `scala>`), carga el archivo de código para ejecutarlo:
+   ```scala
+   scala> :load scala_solution.scala
+   ```
+   *(Para salir de la consola interactiva escribe `:quit` y presiona Enter)*
 
 ---
 
