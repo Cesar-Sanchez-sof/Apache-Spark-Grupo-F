@@ -1,0 +1,20 @@
+# Ignorar archivos locales temporales y binarios pesados
+hadoop/
+ejecutar_analisis.bat
+scala_output.log
+run_scala.py
+setup_hadoop.py
+
+# Ignorar archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignorar temporales de Excel
+~$*.xls*
+
+# Ignorar archivos del sistema y editores
+.vscode/
+desktop.ini
+*.xls
+*.png
